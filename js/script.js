@@ -274,6 +274,17 @@ const WEDDING_CONFIG = {
   preloader: {
     text: 'Adam & Farah',
     minDuration: 1800 // Minimum display time in ms
+  },
+
+  /* ---------- Cinematic Intro Scene ---------- */
+  intro: {
+    enabled: true,
+    groomName: 'Adam',
+    brideName: 'Farah',
+    tagline: 'We invite you to celebrate our wedding',
+    enterMusicBtn: 'Enter With Music',
+    openInvitationBtn: 'Open Invitation',
+    animationDuration: 7000 // 6–8 seconds door sequence
   }
 };
 
@@ -288,6 +299,9 @@ const WEDDING_CONFIG = {
   let galleryImages = [];
   let currentLightboxIndex = 0;
   let countdownInterval = null;
+  let introParticleFrame = null;
+  let introStarted = false;
+  let mainSiteRevealed = false;
 
   /* ---------- DOM Ready ---------- */
   document.addEventListener('DOMContentLoaded', init);
@@ -297,6 +311,7 @@ const WEDDING_CONFIG = {
     applyDirection();
     populateContent();
     initPreloader();
+    initIntroScene();
     initCountdown();
     initMusicPlayer();
     initParallax();
@@ -306,7 +321,7 @@ const WEDDING_CONFIG = {
     initRSVP();
     initWhatsAppFloat();
     initImageFallbacks();
-    initAOS();
+    /* AOS initializes when main site is revealed */
   }
 
   /* ---------- SEO & Meta Tags ---------- */
@@ -432,6 +447,15 @@ const WEDDING_CONFIG = {
     setText('footer-tagline', config.footer.tagline);
     setText('footer-copy', config.footer.copyright);
     renderFooterSocial();
+
+    /* Intro scene text */
+    if (config.intro?.enabled) {
+      setText('intro-groom-name', config.intro.groomName);
+      setText('intro-bride-name', config.intro.brideName);
+      setText('intro-tagline', config.intro.tagline);
+      setText('btn-enter-music-text', config.intro.enterMusicBtn);
+      setText('intro-open-text', config.intro.openInvitationBtn);
+    }
   }
 
   function setText(id, text) {
@@ -621,19 +645,227 @@ const WEDDING_CONFIG = {
   /* ---------- Preloader ---------- */
   function initPreloader() {
     const preloader = document.getElementById('preloader');
-    if (!preloader) return;
+    if (!preloader) {
+      showIntroScene();
+      return;
+    }
 
     const hide = () => {
       preloader.classList.add('hidden');
       preloader.setAttribute('aria-hidden', 'true');
+      showIntroScene();
     };
 
     window.addEventListener('load', () => {
       setTimeout(hide, config.preloader.minDuration);
     });
 
-    /* Fallback if load event already fired */
     setTimeout(hide, config.preloader.minDuration + 500);
+  }
+
+  /* ---------- Cinematic Intro Scene ---------- */
+  function initIntroScene() {
+    if (!config.intro?.enabled) {
+      enterMainSite(false);
+      return;
+    }
+
+    const enterBtn = document.getElementById('btn-enter-music');
+    const openBtn = document.getElementById('btn-open-invitation');
+
+    enterBtn?.addEventListener('click', startIntroExperience);
+    openBtn?.addEventListener('click', () => enterMainSite(true));
+
+    initIntroParticles();
+    createIntroSparkles();
+  }
+
+  function showIntroScene() {
+    if (!config.intro?.enabled || mainSiteRevealed) return;
+
+    const intro = document.getElementById('intro-scene');
+    if (!intro) return;
+
+    intro.classList.add('intro-scene--visible', 'intro-scene--idle');
+    document.body.classList.add('intro-active');
+  }
+
+  function startIntroExperience() {
+    if (introStarted) return;
+    introStarted = true;
+
+    const intro = document.getElementById('intro-scene');
+    const enterBtn = document.getElementById('btn-enter-music');
+    const audio = document.getElementById('bg-music');
+
+    enterBtn?.classList.add('btn-enter-music--hidden');
+
+    /* Start music on user interaction */
+    if (config.music.enabled && audio) {
+      audio.src = config.music.src;
+      audio.play().then(() => {
+        setMusicPlayingState(true);
+      }).catch(() => { /* silent fail */ });
+    }
+
+    intro?.classList.remove('intro-scene--idle');
+    intro?.classList.add('intro-scene--playing');
+
+    const duration = config.intro.animationDuration || 7000;
+
+    setTimeout(() => {
+      intro?.classList.add('intro-scene--ready');
+      intro?.classList.remove('intro-scene--playing');
+    }, duration);
+  }
+
+  function enterMainSite(fromIntro) {
+    if (mainSiteRevealed) return;
+    mainSiteRevealed = true;
+
+    const intro = document.getElementById('intro-scene');
+    const siteWrapper = document.getElementById('site-wrapper');
+
+    intro?.classList.add('intro-scene--exit');
+    intro?.classList.remove('intro-scene--visible', 'intro-scene--ready', 'intro-scene--playing');
+
+    document.body.classList.remove('intro-active');
+
+    if (siteWrapper) {
+      siteWrapper.classList.remove('site-wrapper--hidden');
+      siteWrapper.classList.add('site-wrapper--visible');
+      siteWrapper.setAttribute('aria-hidden', 'false');
+    }
+
+    if (introParticleFrame) {
+      cancelAnimationFrame(introParticleFrame);
+    }
+
+    setTimeout(() => {
+      intro?.remove();
+      initAOS();
+      if (typeof AOS !== 'undefined') AOS.refresh();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }, fromIntro ? 1400 : 0);
+  }
+
+  /* Canvas floating particles for intro background */
+  function initIntroParticles() {
+    const canvas = document.getElementById('intro-particles');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let width = 0;
+    let height = 0;
+    let intensity = 1;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    function createParticle() {
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: Math.random() * 3 + 1,
+        speedY: Math.random() * 0.4 + 0.15,
+        speedX: (Math.random() - 0.5) * 0.3,
+        opacity: Math.random() * 0.5 + 0.2,
+        gold: Math.random() > 0.4
+      };
+    }
+
+    function initParticles() {
+      const count = Math.min(80, Math.floor(width / 12));
+      particles = Array.from({ length: count }, createParticle);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+
+      const activeCount = Math.floor(particles.length * intensity);
+
+      for (let i = 0; i < activeCount; i++) {
+        const p = particles[i];
+        p.y -= p.speedY * intensity;
+        p.x += p.speedX;
+
+        if (p.y < -10) {
+          p.y = height + 10;
+          p.x = Math.random() * width;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.gold
+          ? `rgba(201, 169, 98, ${p.opacity})`
+          : `rgba(255, 255, 255, ${p.opacity * 0.8})`;
+        ctx.fill();
+      }
+
+      if (!mainSiteRevealed) {
+        introParticleFrame = requestAnimationFrame(draw);
+      }
+    }
+
+    resize();
+    initParticles();
+    draw();
+
+    window.addEventListener('resize', () => {
+      resize();
+      initParticles();
+    });
+
+    /* Increase particle intensity when intro plays */
+    document.getElementById('btn-enter-music')?.addEventListener('click', () => {
+      let step = 0;
+      const boost = setInterval(() => {
+        intensity = Math.min(2.5, intensity + 0.15);
+        step++;
+        if (step > 20) clearInterval(boost);
+      }, 200);
+    });
+  }
+
+  /* Extra DOM sparkles for romantic effect */
+  function createIntroSparkles() {
+    const container = document.getElementById('intro-sparkles');
+    if (!container) return;
+
+    for (let i = 0; i < 24; i++) {
+      const sparkle = document.createElement('span');
+      sparkle.className = 'intro-sparkle-dot';
+      sparkle.style.cssText = `
+        position:absolute;
+        width:${Math.random() * 4 + 2}px;
+        height:${Math.random() * 4 + 2}px;
+        background:${Math.random() > 0.5 ? 'rgba(201,169,98,0.8)' : 'rgba(255,255,255,0.9)'};
+        border-radius:50%;
+        left:${Math.random() * 100}%;
+        top:${Math.random() * 100}%;
+        animation: sparkleDrift ${4 + Math.random() * 4}s linear infinite;
+        animation-delay: ${Math.random() * 4}s;
+        box-shadow: 0 0 6px rgba(201,169,98,0.5);
+      `;
+      container.appendChild(sparkle);
+    }
+  }
+
+  function setMusicPlayingState(playing) {
+    const btn = document.getElementById('music-toggle');
+    const icon = document.getElementById('music-icon');
+    if (!btn) return;
+
+    if (playing) {
+      btn.classList.add('playing');
+      if (icon) icon.className = 'fas fa-pause';
+    } else {
+      btn.classList.remove('playing');
+      if (icon) icon.className = 'fas fa-music';
+    }
   }
 
   /* ---------- Countdown Timer ---------- */
@@ -687,15 +919,11 @@ const WEDDING_CONFIG = {
     btn.addEventListener('click', () => {
       if (audio.paused) {
         audio.play().then(() => {
-          btn.classList.add('playing');
-          if (icon) icon.className = 'fas fa-pause';
-        }).catch(() => {
-          /* Autoplay blocked — user must interact again */
-        });
+          setMusicPlayingState(true);
+        }).catch(() => { /* Autoplay blocked */ });
       } else {
         audio.pause();
-        btn.classList.remove('playing');
-        if (icon) icon.className = 'fas fa-music';
+        setMusicPlayingState(false);
       }
     });
   }

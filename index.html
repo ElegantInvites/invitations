@@ -47,7 +47,7 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="intro-active">
 
   <!-- ==================== LOADING SCREEN ==================== -->
   <div id="preloader" class="preloader" aria-hidden="true">
@@ -59,6 +59,86 @@
       <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
     </div>
   </div>
+
+  <!-- ==================== CINEMATIC INTRO SCENE ==================== -->
+  <section id="intro-scene" class="intro-scene" aria-label="Wedding invitation cinematic intro">
+    <!-- Ambient background layers -->
+    <div class="intro-bg">
+      <div class="intro-gradient"></div>
+      <div class="intro-light intro-light--top"></div>
+      <div class="intro-light intro-light--left"></div>
+      <div class="intro-light intro-light--right"></div>
+      <div class="intro-vignette"></div>
+      <canvas id="intro-particles" class="intro-particles" aria-hidden="true"></canvas>
+      <div id="intro-sparkles" class="intro-sparkles" aria-hidden="true"></div>
+    </div>
+
+    <!-- Camera zoom container -->
+    <div class="intro-camera" id="intro-camera">
+      <!-- Luxury wedding arch & door -->
+      <div class="intro-arch-wrap">
+        <div class="intro-arch">
+          <div class="arch-curve"></div>
+          <div class="arch-pillar arch-pillar--left"></div>
+          <div class="arch-pillar arch-pillar--right"></div>
+        </div>
+
+        <!-- Floral decorations -->
+        <div class="intro-florals intro-florals--left" aria-hidden="true">
+          <span class="floral-leaf"></span><span class="floral-leaf"></span><span class="floral-bloom"></span>
+        </div>
+        <div class="intro-florals intro-florals--right" aria-hidden="true">
+          <span class="floral-leaf"></span><span class="floral-leaf"></span><span class="floral-bloom"></span>
+        </div>
+
+        <!-- 3D Door -->
+        <div class="door-scene">
+          <div class="door-glow" id="door-glow"></div>
+          <div class="door-interior">
+            <div class="door-interior-light"></div>
+          </div>
+          <div class="door-frame">
+            <div class="door-panel door-panel--left" id="door-left">
+              <div class="door-panel-inner">
+                <div class="door-carving"></div>
+                <div class="door-handle door-handle--left"></div>
+              </div>
+            </div>
+            <div class="door-panel door-panel--right" id="door-right">
+              <div class="door-panel-inner">
+                <div class="door-carving"></div>
+                <div class="door-handle door-handle--right"></div>
+              </div>
+            </div>
+          </div>
+          <div class="door-threshold"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Couple names & CTA (revealed after door opens) -->
+    <div class="intro-reveal" id="intro-reveal">
+      <div class="intro-names">
+        <span class="intro-name" id="intro-groom-name">Adam</span>
+        <span class="intro-amp">&amp;</span>
+        <span class="intro-name" id="intro-bride-name">Farah</span>
+      </div>
+      <p class="intro-tagline" id="intro-tagline">We invite you to celebrate our wedding</p>
+      <button type="button" class="btn-intro-gold" id="btn-open-invitation">
+        <span id="intro-open-text">Open Invitation</span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+    </div>
+
+    <!-- Enter with music — user must click to start -->
+    <button type="button" class="btn-enter-music" id="btn-enter-music">
+      <span class="btn-enter-music-icon">🎵</span>
+      <span id="btn-enter-music-text">Enter With Music</span>
+    </button>
+  </section>
+
+  <!-- ==================== MAIN SITE (hidden until intro completes) ==================== -->
+  <div id="site-wrapper" class="site-wrapper site-wrapper--hidden" aria-hidden="true">
 
   <!-- ==================== FLOATING MUSIC PLAYER ==================== -->
   <button type="button" id="music-toggle" class="music-btn" aria-label="Toggle background music" title="تشغيل الموسيقى">
@@ -353,6 +433,8 @@
       <p class="footer-copy" id="footer-copy"></p>
     </div>
   </footer>
+
+  </div><!-- /#site-wrapper -->
 
   <!-- Bootstrap 5 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
