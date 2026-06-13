@@ -1,7 +1,18 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="light">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function () {
+      var parts = window.location.pathname.split('/').filter(Boolean);
+      var idx = parts.indexOf('invitations');
+      if (idx !== -1) {
+        var base = document.createElement('base');
+        base.href = '/' + parts.slice(0, idx + 1).join('/') + '/';
+        document.head.appendChild(base);
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -46,8 +57,46 @@
 
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Critical layout — ensures intro overlay works even if CSS is delayed -->
+  <style id="critical-layout">
+    body.intro-active { overflow: hidden; }
+    #site-wrapper.site-wrapper--hidden { display: none !important; }
+    #intro-scene.intro-scene {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      z-index: 9998;
+    }
+    #premium-controls.premium-controls {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.25rem;
+      z-index: 10000;
+    }
+    [dir="rtl"] #premium-controls.premium-controls {
+      right: auto;
+      left: 1.25rem;
+    }
+  </style>
 </head>
 <body class="intro-active">
+
+  <!-- ==================== PREMIUM FLOATING CONTROLS ==================== -->
+  <div id="premium-controls" class="premium-controls" aria-label="Site preferences">
+    <button type="button" id="theme-toggle" class="control-btn control-btn--theme" aria-label="Toggle dark mode">
+      <span class="control-icon" id="theme-icon" aria-hidden="true">🌙</span>
+    </button>
+    <div class="control-divider" aria-hidden="true"></div>
+    <div class="lang-toggle" role="group" aria-label="Language switcher">
+      <button type="button" class="lang-btn active" data-lang="ar" aria-pressed="true">AR</button>
+      <span class="lang-separator" aria-hidden="true">|</span>
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
 
   <!-- ==================== LOADING SCREEN ==================== -->
   <div id="preloader" class="preloader" aria-hidden="true">

@@ -289,6 +289,253 @@ const WEDDING_CONFIG = {
 };
 
 /* ============================================================
+   TRANSLATIONS — Edit all page text here
+   ============================================================ */
+const STORAGE_KEYS = {
+  lang: 'wedding-lang',
+  theme: 'wedding-theme'
+};
+
+const translations = {
+  ar: {
+    site: {
+      title: 'آدم & فرح — دعوة زفاف',
+      description: 'ندعوكم لحضور حفل زفاف آدم وفرح. انضموا إلينا في يوم مليء بالحب والفرح وذكريات لا تُنسى.',
+      keywords: 'زفاف, دعوة, آدم, فرح, wedding invitation',
+      locale: 'ar_EG'
+    },
+    preloader: { text: 'آدم & فرح' },
+    intro: {
+      groomName: 'آدم',
+      brideName: 'فرح',
+      tagline: 'ندعوكم لحضور حفل زفافنا',
+      enterMusicBtn: 'ادخل مع الموسيقى',
+      openInvitationBtn: 'افتح الدعوة'
+    },
+    hero: {
+      subtitle: 'ندعوكم لحضور حفل زفافنا',
+      names: 'آدم & فرح',
+      message: 'بكل فرح وامتنان، ندعوكم لمشاركتنا أجمل يوم في حياتنا. حضوركم سيجعل فرحتنا مكتملة.',
+      ctaText: 'تأكيد الحضور'
+    },
+    wedding: {
+      dateDisplay: '15 سبتمبر 2026',
+      time: '6:00 مساءً'
+    },
+    sections: {
+      countdown: {
+        label: 'العد التنازلي',
+        title: 'ننتظر يومنا الكبير',
+        days: 'يوم',
+        hours: 'ساعة',
+        minutes: 'دقيقة',
+        seconds: 'ثانية'
+      },
+      couple: { label: 'العروسان', title: 'تعرفوا علينا' },
+      story: { label: 'قصتنا', title: 'رحلة حب جميلة' },
+      details: { label: 'تفاصيل الحفل', title: 'معلومات المناسبة' },
+      calendar: {
+        title: 'احفظ الموعد',
+        subtitle: 'أضف حفل زفافنا إلى تقويمك حتى لا تفوتك المناسبة',
+        googleBtn: 'Google Calendar',
+        icsBtn: 'تحميل ملف التقويم'
+      },
+      gallery: { label: 'معرض الصور', title: 'لحظات لا تُنسى' },
+      map: { label: 'الموقع', title: 'كيف تصل إلينا' },
+      rsvp: {
+        label: 'تأكيد الحضور',
+        title: 'RSVP',
+        description: 'نرجو تأكيد حضوركم قبل 1 سبتمبر 2026 حتى نتمكن من استقبالكم بأفضل شكل.',
+        guestName: 'الاسم الكامل',
+        guestPhone: 'رقم الهاتف',
+        guestCount: 'عدد الحضور',
+        attendance: 'تأكيد الحضور',
+        confirmBtn: 'سأحضر',
+        declineBtn: 'لن أتمكن من الحضور',
+        guestOptions: ['1', '2', '3', '4', '5+']
+      },
+      wishes: { label: 'تهاني الأحباء', title: 'رسائل المحبة' },
+      faq: { label: 'أسئلة شائعة', title: 'الأسئلة الشائعة' }
+    },
+    couple: {
+      groom: {
+        name: 'آدم',
+        role: 'العريس',
+        description: 'رجل طموح يؤمن بأن الحب الحقيقي يُبنى على الاحترام والصدق. يحلم ببناء أسرة جميلة مع شريك حياته.'
+      },
+      bride: {
+        name: 'فرح',
+        role: 'العروس',
+        description: 'امرأة رقيقة ذات قلب كبير، تجمع بين الأناقة والدفء. تؤمن بأن كل لحظة مع من تحب هي كنز.'
+      },
+      displayNames: 'آدم & فرح'
+    },
+    eventDetails: [
+      { icon: 'fa-calendar-days', label: 'التاريخ', value: '15 سبتمبر 2026' },
+      { icon: 'fa-clock', label: 'الوقت', value: '6:00 مساءً' },
+      { icon: 'fa-location-dot', label: 'المكان', value: 'قاعة Royal Palace — التجمع الخامس، القاهرة' },
+      { icon: 'fa-shirt', label: 'الزي', value: 'رسمي / Black Tie Optional' },
+      { icon: 'fa-phone', label: 'للتواصل', value: '+20 109 913 7799', link: 'tel:+201099137799' }
+    ],
+    story: [
+      { year: '2020', title: 'أول لقاء', text: 'التقينا في مناسبة عائلية، وبدأت قصة جميلة مليئة بالضحك والمحادثات الطويلة.' },
+      { year: '2022', title: 'خطوبة', text: 'قررنا أن نبدأ رحلة مشتركة، ووعدنا بعضنا بالحب والدعم في كل خطوة.' },
+      { year: '2025', title: 'الخطوبة الرسمية', text: 'احتفلنا بخطوبتنا وسط عائلتنا وأصدقائنا الأعزاء في أجواء مليئة بالفرح والمحبة.' },
+      { year: '2026', title: 'الزفاف', text: 'والآن حان وقت قول "نعم" أمام من نحب — وننتظركم لتشاركونا الفرحة.' }
+    ],
+    testimonials: [
+      { quote: 'فرحتكم تضيء القلوب. بارك الله لكما وبارك عليكما وجمع بينكما في خير.', author: 'عائلة محمد' },
+      { quote: 'من أجمل الأزواج الذين نعرفهم. نتمنى لكما حياة مليئة بالسعادة والبركة.', author: 'أصدقاء الجامعة' },
+      { quote: 'قصة حبكم ملهمة. نتمنى لكما كل الخير في رحلتكم الجديدة.', author: 'أحمد ونور' },
+      { quote: 'يوم زفافكم سيكون رائعاً بقدر ما أنتم رائعون. مبروك!', author: 'عائلة علي' }
+    ],
+    faq: [
+      { question: 'هل يمكنني إحضار مرافق؟', answer: 'نعم، يرجى تحديد عدد المرافقين عند تأكيد الحضور عبر نموذج RSVP.' },
+      { question: 'ما هو dress code المناسب؟', answer: 'الزي الرسمي (Formal / Black Tie Optional). نرجو اختيار ملابس أنيقة تناسب حفل زفاف.' },
+      { question: 'هل يوجد موقف سيارات؟', answer: 'نعم، تتوفر مواقف مجانية لجميع الضيوف في موقع القاعة.' },
+      { question: 'متى آخر موعد لتأكيد الحضور؟', answer: 'نرجو تأكيد حضوركم قبل 1 سبتمبر 2026 عبر نموذج RSVP أو WhatsApp.' },
+      { question: 'هل يمكن إحضار الأطفال؟', answer: 'نحب أطفالكم! يرجى تضمينهم في عدد الحضور عند تأكيد الحضور.' }
+    ],
+    rsvp: {
+      whatsappMessageIntro: '🌸 *تأكيد حضور — آدم & فرح*',
+      attendanceYes: 'سأحضر ✅',
+      attendanceNo: 'لن أتمكن من الحضور ❌'
+    },
+    footer: {
+      tagline: 'شكراً لكونكم جزءاً من قصة حبنا',
+      copyright: '© 2026 آدم & فرح. صُنع بحب.'
+    },
+    map: { address: 'قاعة Royal Palace — التجمع الخامس، القاهرة، مصر' },
+    alerts: {
+      nameRequired: 'يرجى إدخال الاسم الكامل',
+      phoneRequired: 'يرجى إدخال رقم الهاتف'
+    },
+    whatsapp: {
+      floatMessage: 'مرحباً، لدي استفسار بخصوص حفل زفاف آدم & فرح'
+    },
+    music: { ariaLabel: 'تشغيل الموسيقى' }
+  },
+  en: {
+    site: {
+      title: 'Adam & Farah — Wedding Invitation',
+      description: "You're invited to celebrate the wedding of Adam and Farah. Join us for a day of love, joy, and unforgettable memories.",
+      keywords: 'wedding, invitation, Adam, Farah, wedding invitation',
+      locale: 'en_US'
+    },
+    preloader: { text: 'Adam & Farah' },
+    intro: {
+      groomName: 'Adam',
+      brideName: 'Farah',
+      tagline: 'We invite you to celebrate our wedding',
+      enterMusicBtn: 'Enter With Music',
+      openInvitationBtn: 'Open Invitation'
+    },
+    hero: {
+      subtitle: "You're Invited to Our Wedding",
+      names: 'Adam & Farah',
+      message: 'With joy and gratitude, we invite you to share the most beautiful day of our lives. Your presence will complete our happiness.',
+      ctaText: 'Confirm Attendance'
+    },
+    wedding: {
+      dateDisplay: 'September 15, 2026',
+      time: '6:00 PM'
+    },
+    sections: {
+      countdown: {
+        label: 'Countdown',
+        title: 'Until Our Big Day',
+        days: 'Days',
+        hours: 'Hours',
+        minutes: 'Minutes',
+        seconds: 'Seconds'
+      },
+      couple: { label: 'The Couple', title: 'Meet Us' },
+      story: { label: 'Our Story', title: 'A Beautiful Love Journey' },
+      details: { label: 'Event Details', title: 'Wedding Information' },
+      calendar: {
+        title: 'Save the Date',
+        subtitle: 'Add our wedding to your calendar so you never miss the celebration',
+        googleBtn: 'Google Calendar',
+        icsBtn: 'Download Calendar File'
+      },
+      gallery: { label: 'Photo Gallery', title: 'Unforgettable Moments' },
+      map: { label: 'Location', title: 'How to Find Us' },
+      rsvp: {
+        label: 'RSVP',
+        title: 'Confirm Your Attendance',
+        description: 'Please confirm your attendance before September 1, 2026 so we can welcome you properly.',
+        guestName: 'Full Name',
+        guestPhone: 'Phone Number',
+        guestCount: 'Number of Guests',
+        attendance: 'Attendance',
+        confirmBtn: 'I Will Attend',
+        declineBtn: 'Cannot Attend',
+        guestOptions: ['1', '2', '3', '4', '5+']
+      },
+      wishes: { label: 'Warm Wishes', title: 'Messages of Love' },
+      faq: { label: 'FAQ', title: 'Frequently Asked Questions' }
+    },
+    couple: {
+      groom: {
+        name: 'Adam',
+        role: 'The Groom',
+        description: 'An ambitious man who believes true love is built on respect and honesty. He dreams of building a beautiful family with his partner.'
+      },
+      bride: {
+        name: 'Farah',
+        role: 'The Bride',
+        description: 'A graceful woman with a big heart, combining elegance and warmth. She believes every moment with loved ones is a treasure.'
+      },
+      displayNames: 'Adam & Farah'
+    },
+    eventDetails: [
+      { icon: 'fa-calendar-days', label: 'Date', value: 'September 15, 2026' },
+      { icon: 'fa-clock', label: 'Time', value: '6:00 PM' },
+      { icon: 'fa-location-dot', label: 'Venue', value: 'Royal Palace Hall — Fifth Settlement, Cairo' },
+      { icon: 'fa-shirt', label: 'Dress Code', value: 'Formal / Black Tie Optional' },
+      { icon: 'fa-phone', label: 'Contact', value: '+20 109 913 7799', link: 'tel:+201099137799' }
+    ],
+    story: [
+      { year: '2020', title: 'First Meeting', text: 'We met at a family gathering, and a beautiful story began filled with laughter and long conversations.' },
+      { year: '2022', title: 'Engagement', text: 'We decided to start a shared journey, promising each other love and support every step of the way.' },
+      { year: '2025', title: 'Official Engagement', text: 'We celebrated our engagement surrounded by family and dear friends in an atmosphere full of joy and love.' },
+      { year: '2026', title: 'The Wedding', text: 'Now it is time to say "yes" before those we love — and we await you to share in our joy.' }
+    ],
+    testimonials: [
+      { quote: 'Your joy lights up hearts. May God bless you both and unite you in goodness.', author: 'The Mohamed Family' },
+      { quote: 'May your love story be as beautiful as the day you say "I do." Congratulations!', author: 'Sarah & James' },
+      { quote: 'One of the most wonderful couples we know. Wishing you a life full of happiness and blessings.', author: 'University Friends' },
+      { quote: 'Wishing you a lifetime of love, laughter, and endless adventures together.', author: 'The Anderson Family' }
+    ],
+    faq: [
+      { question: 'Can I bring a plus-one?', answer: 'Yes, please specify the number of guests when confirming via the RSVP form.' },
+      { question: 'What is the dress code?', answer: 'Formal / Black Tie Optional. Please choose elegant attire suitable for a wedding celebration.' },
+      { question: 'Is parking available?', answer: 'Yes, free parking is available for all guests at the venue.' },
+      { question: 'What is the RSVP deadline?', answer: 'Please confirm your attendance before September 1, 2026 via RSVP or WhatsApp.' },
+      { question: 'Can I bring children?', answer: 'We love your little ones! Please include them in your guest count when confirming attendance.' }
+    ],
+    rsvp: {
+      whatsappMessageIntro: '🌸 *Wedding RSVP — Adam & Farah*',
+      attendanceYes: 'I Will Attend ✅',
+      attendanceNo: 'Cannot Attend ❌'
+    },
+    footer: {
+      tagline: 'Thank you for being part of our love story',
+      copyright: '© 2026 Adam & Farah. Made with love.'
+    },
+    map: { address: 'Royal Palace Hall — Fifth Settlement, Cairo, Egypt' },
+    alerts: {
+      nameRequired: 'Please enter your full name',
+      phoneRequired: 'Please enter your phone number'
+    },
+    whatsapp: {
+      floatMessage: "Hello, I have a question about Adam & Farah's wedding"
+    },
+    music: { ariaLabel: 'Toggle background music' }
+  }
+};
+
+/* ============================================================
    APPLICATION — Do not edit below unless extending features
    ============================================================ */
 
@@ -296,6 +543,8 @@ const WEDDING_CONFIG = {
   'use strict';
 
   const config = WEDDING_CONFIG;
+  let currentLang = 'ar';
+  let currentTheme = 'light';
   let galleryImages = [];
   let currentLightboxIndex = 0;
   let countdownInterval = null;
@@ -307,8 +556,8 @@ const WEDDING_CONFIG = {
   document.addEventListener('DOMContentLoaded', init);
 
   function init() {
+    initPreferences();
     applySiteMeta();
-    applyDirection();
     populateContent();
     initPreloader();
     initIntroScene();
@@ -324,22 +573,117 @@ const WEDDING_CONFIG = {
     /* AOS initializes when main site is revealed */
   }
 
+  /* ---------- Language & Theme Preferences ---------- */
+  function getLangPack() {
+    return translations[currentLang] || translations.ar;
+  }
+
+  function detectBrowserLanguage() {
+    const browserLang = (navigator.language || navigator.userLanguage || 'ar').toLowerCase();
+    if (browserLang.startsWith('ar')) return 'ar';
+    if (browserLang.startsWith('en')) return 'en';
+    return 'ar';
+  }
+
+  function initPreferences() {
+    const savedLang = localStorage.getItem(STORAGE_KEYS.lang);
+    const savedTheme = localStorage.getItem(STORAGE_KEYS.theme);
+
+    currentLang = savedLang || detectBrowserLanguage();
+    currentTheme = savedTheme || 'light';
+
+    applyTheme(currentTheme, false);
+    applyLanguage(currentLang, false);
+    initControlPanel();
+  }
+
+  function initControlPanel() {
+    const themeBtn = document.getElementById('theme-toggle');
+    const langBtns = document.querySelectorAll('.lang-btn');
+
+    themeBtn?.addEventListener('click', () => {
+      setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    });
+
+    langBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        if (lang && lang !== currentLang) setLanguage(lang);
+      });
+    });
+
+    updateControlPanelUI();
+  }
+
+  function setLanguage(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+    localStorage.setItem(STORAGE_KEYS.lang, lang);
+    applyLanguage(lang);
+  }
+
+  function applyLanguage(lang, updateContent = true) {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    config.site.lang = lang;
+    config.site.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+    if (updateContent) {
+      applySiteMeta();
+      populateContent();
+      applyDirection();
+      initWhatsAppFloat();
+    }
+
+    updateControlPanelUI();
+  }
+
+  function setTheme(theme) {
+    currentTheme = theme;
+    localStorage.setItem(STORAGE_KEYS.theme, theme);
+    applyTheme(theme);
+  }
+
+  function applyTheme(theme, updateUI = true) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (updateUI) updateControlPanelUI();
+  }
+
+  function updateControlPanelUI() {
+    const themeIcon = document.getElementById('theme-icon');
+    const themeBtn = document.getElementById('theme-toggle');
+
+    if (themeIcon) {
+      themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+    }
+    if (themeBtn) {
+      themeBtn.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      const isActive = btn.dataset.lang === currentLang;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
   /* ---------- SEO & Meta Tags ---------- */
   function applySiteMeta() {
-    document.documentElement.lang = config.site.lang;
-    document.documentElement.dir = config.site.dir;
-    document.title = config.site.title;
+    const t = getLangPack();
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+    document.title = t.site.title;
 
-    setMeta('description', config.site.description);
-    setMeta('keywords', config.site.keywords);
+    setMeta('description', t.site.description);
+    setMeta('keywords', t.site.keywords);
     setMeta('author', config.site.author);
-    setMeta('og:title', config.site.title, 'property');
-    setMeta('og:description', config.site.description, 'property');
+    setMeta('og:title', t.site.title, 'property');
+    setMeta('og:description', t.site.description, 'property');
     setMeta('og:image', config.hero.image, 'property');
     setMeta('og:url', config.site.url, 'property');
-    setMeta('og:locale', config.site.locale, 'property');
-    setMeta('twitter:title', config.site.title);
-    setMeta('twitter:description', config.site.description);
+    setMeta('og:locale', t.site.locale, 'property');
+    setMeta('twitter:title', t.site.title);
+    setMeta('twitter:description', t.site.description);
     setMeta('twitter:image', config.hero.image);
   }
 
@@ -352,30 +696,32 @@ const WEDDING_CONFIG = {
   function applyDirection() {
     /* Bootstrap carousel RTL fix */
     const carousel = document.getElementById('wishes-carousel');
-    if (carousel && config.site.dir === 'rtl') {
-      carousel.setAttribute('dir', 'ltr'); /* Keep carousel controls intuitive */
+    if (carousel) {
+      carousel.setAttribute('dir', currentLang === 'ar' ? 'ltr' : 'ltr');
     }
   }
 
-  /* ---------- Populate All Content from Config ---------- */
+  /* ---------- Populate All Content from Translations ---------- */
   function populateContent() {
+    const t = getLangPack();
+
     /* Preloader */
-    setText('preloader-text', config.preloader.text);
+    setText('preloader-text', t.preloader.text);
 
     /* Hero */
-    setText('hero-subtitle', config.hero.subtitle);
-    setText('hero-names', config.hero.names);
-    setText('hero-date', config.wedding.dateDisplay);
-    setText('hero-message', config.hero.message);
+    setText('hero-subtitle', t.hero.subtitle);
+    setText('hero-names', t.hero.names);
+    setText('hero-date', t.wedding.dateDisplay);
+    setText('hero-message', t.hero.message);
     const cta = document.getElementById('hero-cta');
     if (cta) {
-      cta.textContent = config.hero.ctaText;
+      cta.textContent = t.hero.ctaText;
       cta.href = config.hero.ctaLink;
     }
     setHeroBackground(config.hero.image);
 
     /* Countdown labels */
-    const cd = config.sections.countdown;
+    const cd = t.sections.countdown;
     setText('countdown-label', cd.label);
     setText('countdown-title', cd.title);
     setText('cd-days-label', cd.days);
@@ -384,41 +730,41 @@ const WEDDING_CONFIG = {
     setText('cd-seconds-label', cd.seconds);
 
     /* Couple section */
-    setText('couple-label', config.sections.couple.label);
-    setText('couple-title', config.sections.couple.title);
-    setCoupleCard('bride', config.couple.bride);
-    setCoupleCard('groom', config.couple.groom);
+    setText('couple-label', t.sections.couple.label);
+    setText('couple-title', t.sections.couple.title);
+    setCoupleCard('bride', t.couple.bride, config.couple.bride);
+    setCoupleCard('groom', t.couple.groom, config.couple.groom);
 
     /* Story */
-    setText('story-label', config.sections.story.label);
-    setText('story-title', config.sections.story.title);
+    setText('story-label', t.sections.story.label);
+    setText('story-title', t.sections.story.title);
     renderTimeline();
 
     /* Event details */
-    setText('details-label', config.sections.details.label);
-    setText('details-title', config.sections.details.title);
+    setText('details-label', t.sections.details.label);
+    setText('details-title', t.sections.details.title);
     renderEventDetails();
 
     /* Calendar section */
-    setText('calendar-title', config.sections.calendar.title);
-    setText('calendar-subtitle', config.sections.calendar.subtitle);
-    setText('btn-google-text', config.sections.calendar.googleBtn);
-    setText('btn-ics-text', config.sections.calendar.icsBtn);
+    setText('calendar-title', t.sections.calendar.title);
+    setText('calendar-subtitle', t.sections.calendar.subtitle);
+    setText('btn-google-text', t.sections.calendar.googleBtn);
+    setText('btn-ics-text', t.sections.calendar.icsBtn);
 
     /* Gallery */
-    setText('gallery-label', config.sections.gallery.label);
-    setText('gallery-title', config.sections.gallery.title);
+    setText('gallery-label', t.sections.gallery.label);
+    setText('gallery-title', t.sections.gallery.title);
     renderGallery();
 
     /* Map */
-    setText('map-label', config.sections.map.label);
-    setText('map-title', config.sections.map.title);
-    setText('map-address', config.map.address);
+    setText('map-label', t.sections.map.label);
+    setText('map-title', t.sections.map.title);
+    setText('map-address', t.map.address);
     const mapIframe = document.getElementById('map-iframe');
     if (mapIframe) mapIframe.src = config.map.embedUrl;
 
     /* RSVP labels */
-    const rsvpSec = config.sections.rsvp;
+    const rsvpSec = t.sections.rsvp;
     setText('rsvp-label', rsvpSec.label);
     setText('rsvp-title', rsvpSec.title);
     setText('rsvp-desc', rsvpSec.description);
@@ -432,30 +778,34 @@ const WEDDING_CONFIG = {
     renderAttendanceOptions();
 
     /* Wishes */
-    setText('wishes-label', config.sections.wishes.label);
-    setText('wishes-title', config.sections.wishes.title);
+    setText('wishes-label', t.sections.wishes.label);
+    setText('wishes-title', t.sections.wishes.title);
     renderTestimonials();
 
     /* FAQ */
-    setText('faq-label', config.sections.faq.label);
-    setText('faq-title', config.sections.faq.title);
+    setText('faq-label', t.sections.faq.label);
+    setText('faq-title', t.sections.faq.title);
     renderFAQ();
 
     /* Footer */
-    setText('footer-names', config.couple.displayNames);
-    setText('footer-date', config.wedding.dateDisplay);
-    setText('footer-tagline', config.footer.tagline);
-    setText('footer-copy', config.footer.copyright);
+    setText('footer-names', t.couple.displayNames);
+    setText('footer-date', t.wedding.dateDisplay);
+    setText('footer-tagline', t.footer.tagline);
+    setText('footer-copy', t.footer.copyright);
     renderFooterSocial();
 
     /* Intro scene text */
     if (config.intro?.enabled) {
-      setText('intro-groom-name', config.intro.groomName);
-      setText('intro-bride-name', config.intro.brideName);
-      setText('intro-tagline', config.intro.tagline);
-      setText('btn-enter-music-text', config.intro.enterMusicBtn);
-      setText('intro-open-text', config.intro.openInvitationBtn);
+      setText('intro-groom-name', t.intro.groomName);
+      setText('intro-bride-name', t.intro.brideName);
+      setText('intro-tagline', t.intro.tagline);
+      setText('btn-enter-music-text', t.intro.enterMusicBtn);
+      setText('intro-open-text', t.intro.openInvitationBtn);
     }
+
+    /* Music button aria */
+    const musicBtn = document.getElementById('music-toggle');
+    if (musicBtn) musicBtn.setAttribute('aria-label', t.music.ariaLabel);
   }
 
   function setText(id, text) {
@@ -470,16 +820,16 @@ const WEDDING_CONFIG = {
     }
   }
 
-  function setCoupleCard(type, data) {
+  function setCoupleCard(type, textData, imageData) {
     const img = document.getElementById(`${type}-image`);
     if (img) {
-      img.src = data.image;
-      img.alt = data.name;
-      img.dataset.fallback = data.imageFallback || '';
+      img.src = imageData.image;
+      img.alt = textData.name;
+      img.dataset.fallback = imageData.imageFallback || '';
     }
-    setText(`${type}-name`, data.nameAr || data.name);
-    setText(`${type}-role`, data.role);
-    setText(`${type}-desc`, data.description);
+    setText(`${type}-name`, textData.name);
+    setText(`${type}-role`, textData.role);
+    setText(`${type}-desc`, textData.description);
   }
 
   /* ---------- Image Fallback (jpg → svg) ---------- */
@@ -505,8 +855,9 @@ const WEDDING_CONFIG = {
   function renderTimeline() {
     const container = document.getElementById('story-timeline');
     if (!container) return;
+    const t = getLangPack();
 
-    container.innerHTML = config.story.map((item, i) => `
+    container.innerHTML = t.story.map((item, i) => `
       <div class="timeline-item" data-aos="${i % 2 === 0 ? 'fade-left' : 'fade-right'}" data-aos-delay="${i * 100}">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
@@ -522,8 +873,9 @@ const WEDDING_CONFIG = {
   function renderEventDetails() {
     const grid = document.getElementById('event-details-grid');
     if (!grid) return;
+    const t = getLangPack();
 
-    grid.innerHTML = config.eventDetails.map((item, i) => {
+    grid.innerHTML = t.eventDetails.map((item, i) => {
       const valueHtml = item.link
         ? `<a href="${item.link}" dir="ltr">${escapeHtml(item.value)}</a>`
         : escapeHtml(item.value);
@@ -561,8 +913,9 @@ const WEDDING_CONFIG = {
   function renderGuestCountOptions() {
     const select = document.getElementById('guest-count');
     if (!select) return;
+    const t = getLangPack();
 
-    select.innerHTML = config.sections.rsvp.guestOptions.map((n) =>
+    select.innerHTML = t.sections.rsvp.guestOptions.map((n) =>
       `<option value="${n}">${n}</option>`
     ).join('');
   }
@@ -570,10 +923,11 @@ const WEDDING_CONFIG = {
   function renderAttendanceOptions() {
     const container = document.getElementById('attendance-options');
     if (!container) return;
+    const t = getLangPack();
 
     const options = [
-      { id: 'att-yes', value: 'yes', label: config.rsvp.attendanceYes },
-      { id: 'att-no', value: 'no', label: config.rsvp.attendanceNo }
+      { id: 'att-yes', value: 'yes', label: t.rsvp.attendanceYes },
+      { id: 'att-no', value: 'no', label: t.rsvp.attendanceNo }
     ];
 
     container.innerHTML = options.map((opt) => `
@@ -589,20 +943,21 @@ const WEDDING_CONFIG = {
     const slides = document.getElementById('wishes-slides');
     const indicators = document.getElementById('wishes-indicators');
     if (!slides || !indicators) return;
+    const t = getLangPack();
 
-    slides.innerHTML = config.testimonials.map((t, i) => `
+    slides.innerHTML = t.testimonials.map((item, i) => `
       <div class="carousel-item ${i === 0 ? 'active' : ''}">
         <div class="wish-slide">
           <p class="wish-quote">
             <i class="fas fa-quote-right"></i>
-            ${escapeHtml(t.quote)}
+            ${escapeHtml(item.quote)}
           </p>
-          <p class="wish-author">— ${escapeHtml(t.author)}</p>
+          <p class="wish-author">— ${escapeHtml(item.author)}</p>
         </div>
       </div>
     `).join('');
 
-    indicators.innerHTML = config.testimonials.map((_, i) => `
+    indicators.innerHTML = t.testimonials.map((_, i) => `
       <button type="button" data-bs-target="#wishes-carousel" data-bs-slide-to="${i}"
         ${i === 0 ? 'class="active" aria-current="true"' : ''} aria-label="Slide ${i + 1}"></button>
     `).join('');
@@ -612,8 +967,9 @@ const WEDDING_CONFIG = {
   function renderFAQ() {
     const accordion = document.getElementById('faq-accordion');
     if (!accordion) return;
+    const t = getLangPack();
 
-    accordion.innerHTML = config.faq.map((item, i) => `
+    accordion.innerHTML = t.faq.map((item, i) => `
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button class="accordion-button ${i !== 0 ? 'collapsed' : ''}" type="button"
@@ -725,28 +1081,29 @@ const WEDDING_CONFIG = {
 
     const intro = document.getElementById('intro-scene');
     const siteWrapper = document.getElementById('site-wrapper');
+    const exitDelay = fromIntro ? 1400 : 0;
 
     intro?.classList.add('intro-scene--exit');
-    intro?.classList.remove('intro-scene--visible', 'intro-scene--ready', 'intro-scene--playing');
-
-    document.body.classList.remove('intro-active');
-
-    if (siteWrapper) {
-      siteWrapper.classList.remove('site-wrapper--hidden');
-      siteWrapper.classList.add('site-wrapper--visible');
-      siteWrapper.setAttribute('aria-hidden', 'false');
-    }
+    intro?.classList.remove('intro-scene--visible', 'intro-scene--ready', 'intro-scene--playing', 'intro-scene--idle');
 
     if (introParticleFrame) {
       cancelAnimationFrame(introParticleFrame);
     }
 
     setTimeout(() => {
+      document.body.classList.remove('intro-active');
       intro?.remove();
+
+      if (siteWrapper) {
+        siteWrapper.classList.remove('site-wrapper--hidden');
+        siteWrapper.classList.add('site-wrapper--visible');
+        siteWrapper.setAttribute('aria-hidden', 'false');
+      }
+
       initAOS();
       if (typeof AOS !== 'undefined') AOS.refresh();
       window.scrollTo({ top: 0, behavior: 'instant' });
-    }, fromIntro ? 1400 : 0);
+    }, exitDelay);
   }
 
   /* Canvas floating particles for intro background */
@@ -989,8 +1346,8 @@ const WEDDING_CONFIG = {
     document.addEventListener('keydown', (e) => {
       if (lightbox?.hidden) return;
       if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') navigateLightbox(config.site.dir === 'rtl' ? 1 : -1);
-      if (e.key === 'ArrowRight') navigateLightbox(config.site.dir === 'rtl' ? -1 : 1);
+      if (e.key === 'ArrowLeft') navigateLightbox(currentLang === 'ar' ? 1 : -1);
+      if (e.key === 'ArrowRight') navigateLightbox(currentLang === 'ar' ? -1 : 1);
     });
   }
 
@@ -1104,23 +1461,24 @@ const WEDDING_CONFIG = {
   }
 
   function submitRSVP(type) {
+    const t = getLangPack();
     const name = document.getElementById('guest-name')?.value.trim();
     const phone = document.getElementById('guest-phone')?.value.trim();
     const count = document.getElementById('guest-count')?.value;
 
     if (!name) {
-      alert(config.site.lang === 'ar' ? 'يرجى إدخال الاسم الكامل' : 'Please enter your full name');
+      alert(t.alerts.nameRequired);
       document.getElementById('guest-name')?.focus();
       return;
     }
 
     if (!phone) {
-      alert(config.site.lang === 'ar' ? 'يرجى إدخال رقم الهاتف' : 'Please enter your phone number');
+      alert(t.alerts.phoneRequired);
       document.getElementById('guest-phone')?.focus();
       return;
     }
 
-    const attendance = type === 'yes' ? config.rsvp.attendanceYes : config.rsvp.attendanceNo;
+    const attendance = type === 'yes' ? t.rsvp.attendanceYes : t.rsvp.attendanceNo;
     const message = buildRSVPMessage(name, phone, count, attendance);
 
     const url = `https://wa.me/${config.rsvp.whatsappNumber}?text=${encodeURIComponent(message)}`;
@@ -1128,16 +1486,17 @@ const WEDDING_CONFIG = {
   }
 
   function buildRSVPMessage(name, phone, count, attendance) {
+    const t = getLangPack();
     const lines = [
-      config.rsvp.whatsappMessageIntro,
+      t.rsvp.whatsappMessageIntro,
       '',
       `👤 *Name / الاسم:* ${name}`,
       `📱 *Phone / الهاتف:* ${phone}`,
       `👥 *Guests / عدد الحضور:* ${count}`,
       `📋 *Status / الحالة:* ${attendance}`,
       '',
-      `📅 *Event Date:* ${config.wedding.dateDisplay}`,
-      `📍 *Venue:* ${config.map.address}`,
+      `📅 *Event Date:* ${t.wedding.dateDisplay}`,
+      `📍 *Venue:* ${t.map.address}`,
       '',
       '_Sent via Wedding Invitation Website_'
     ];
@@ -1148,12 +1507,9 @@ const WEDDING_CONFIG = {
   function initWhatsAppFloat() {
     const btn = document.getElementById('whatsapp-float');
     if (!btn) return;
+    const t = getLangPack();
 
-    const defaultMsg = config.site.lang === 'ar'
-      ? 'مرحباً، لدي استفسار بخصوص حفل زفاف Adam & Farah'
-      : 'Hello, I have a question about Adam & Farah\'s wedding';
-
-    btn.href = `https://wa.me/${config.rsvp.whatsappNumber}?text=${encodeURIComponent(defaultMsg)}`;
+    btn.href = `https://wa.me/${config.rsvp.whatsappNumber}?text=${encodeURIComponent(t.whatsapp.floatMessage)}`;
   }
 
   /* ---------- AOS Initialization ---------- */
