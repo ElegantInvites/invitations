@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
   <defs>
     <linearGradient id="g" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#e8dfd0"/>
-      <stop offset="100%" style="stop-color:#d4c4a8"/>
+      <stop offset="0%" style="stop-color:#F5F2EE"/>
+      <stop offset="100%" style="stop-color:#EDE8E2"/>
     </linearGradient>
   </defs>
   <rect width="800" height="1000" fill="url(#g)"/>
-  <ellipse cx="400" cy="320" rx="120" ry="140" fill="#8b7355" opacity="0.35"/>
-  <text x="400" y="720" text-anchor="middle" fill="#5c4a32" font-family="Georgia, serif" font-size="36">Adam</text>
-  <text x="400" y="780" text-anchor="middle" fill="#c9a962" font-family="Georgia, serif" font-size="18">groom.jpg</text>
+  <ellipse cx="400" cy="320" rx="120" ry="140" fill="#4F5D3A" opacity="0.2"/>
+  <text x="400" y="720" text-anchor="middle" fill="#2F3524" font-family="Georgia, serif" font-size="36">Adam</text>
+  <text x="400" y="780" text-anchor="middle" fill="#D8A7B1" font-family="Georgia, serif" font-size="18">groom.jpg</text>
 </svg>

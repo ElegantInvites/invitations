@@ -289,6 +289,15 @@ const WEDDING_CONFIG = {
 };
 
 /* ============================================================
+   BRAND ATTRIBUTION — Elegant Invites
+   ============================================================ */
+const BRAND = {
+  name: 'Elegant Invites',
+  tagline: 'Digital Wedding Invitations',
+  instagramUrl: 'https://www.instagram.com/elegantinvites2_/'
+};
+
+/* ============================================================
    TRANSLATIONS — Edit all page text here
    ============================================================ */
 const STORAGE_KEYS = {
@@ -310,7 +319,8 @@ const translations = {
       brideName: 'فرح',
       tagline: 'ندعوكم لحضور حفل زفافنا',
       enterMusicBtn: 'ادخل مع الموسيقى',
-      openInvitationBtn: 'افتح الدعوة'
+      openInvitationBtn: 'افتح الدعوة',
+      designCredit: 'صُمم بواسطة Elegant Invites'
     },
     hero: {
       subtitle: 'ندعوكم لحضور حفل زفافنا',
@@ -428,7 +438,8 @@ const translations = {
       brideName: 'Farah',
       tagline: 'We invite you to celebrate our wedding',
       enterMusicBtn: 'Enter With Music',
-      openInvitationBtn: 'Open Invitation'
+      openInvitationBtn: 'Open Invitation',
+      designCredit: 'Designed by Elegant Invites'
     },
     hero: {
       subtitle: "You're Invited to Our Wedding",
@@ -570,6 +581,7 @@ const translations = {
     initRSVP();
     initWhatsAppFloat();
     initImageFallbacks();
+    initBrandAttribution();
     /* AOS initializes when main site is revealed */
   }
 
@@ -633,6 +645,7 @@ const translations = {
       populateContent();
       applyDirection();
       initWhatsAppFloat();
+      renderFooterAttribution();
     }
 
     updateControlPanelUI();
@@ -793,6 +806,7 @@ const translations = {
     setText('footer-tagline', t.footer.tagline);
     setText('footer-copy', t.footer.copyright);
     renderFooterSocial();
+    renderFooterAttribution();
 
     /* Intro scene text */
     if (config.intro?.enabled) {
@@ -801,6 +815,7 @@ const translations = {
       setText('intro-tagline', t.intro.tagline);
       setText('btn-enter-music-text', t.intro.enterMusicBtn);
       setText('intro-open-text', t.intro.openInvitationBtn);
+      setText('intro-attribution', t.intro.designCredit);
     }
 
     /* Music button aria */
@@ -998,6 +1013,33 @@ const translations = {
     `).join('');
   }
 
+  /* ---------- Elegant Invites Attribution ---------- */
+  function renderFooterAttribution() {
+    const container = document.getElementById('footer-attribution');
+    if (!container) return;
+
+    container.innerHTML = `
+      <div class="footer-attribution-inner">
+        <a href="${BRAND.instagramUrl}" class="footer-attribution-brand" target="_blank" rel="noopener noreferrer">
+          ${escapeHtml(BRAND.name)}
+        </a>
+        <a href="${BRAND.instagramUrl}" class="footer-attribution-icon" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(BRAND.name)} on Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      <p class="footer-attribution-tagline">${escapeHtml(BRAND.tagline)}</p>
+    `;
+  }
+
+  function initBrandAttribution() {
+    const instagramBtn = document.getElementById('instagram-float');
+    if (instagramBtn) {
+      instagramBtn.href = BRAND.instagramUrl;
+      instagramBtn.setAttribute('aria-label', `${BRAND.name} on Instagram`);
+    }
+    renderFooterAttribution();
+  }
+
   /* ---------- Preloader ---------- */
   function initPreloader() {
     const preloader = document.getElementById('preloader');
@@ -1130,7 +1172,7 @@ const translations = {
         speedY: Math.random() * 0.4 + 0.15,
         speedX: (Math.random() - 0.5) * 0.3,
         opacity: Math.random() * 0.5 + 0.2,
-        gold: Math.random() > 0.4
+        pink: Math.random() > 0.4
       };
     }
 
@@ -1156,8 +1198,8 @@ const translations = {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.gold
-          ? `rgba(201, 169, 98, ${p.opacity})`
+        ctx.fillStyle = p.pink
+          ? `rgba(216, 167, 177, ${p.opacity})`
           : `rgba(255, 255, 255, ${p.opacity * 0.8})`;
         ctx.fill();
       }
@@ -1199,13 +1241,13 @@ const translations = {
         position:absolute;
         width:${Math.random() * 4 + 2}px;
         height:${Math.random() * 4 + 2}px;
-        background:${Math.random() > 0.5 ? 'rgba(201,169,98,0.8)' : 'rgba(255,255,255,0.9)'};
+        background:${Math.random() > 0.5 ? 'rgba(216,167,177,0.8)' : 'rgba(255,255,255,0.9)'};
         border-radius:50%;
         left:${Math.random() * 100}%;
         top:${Math.random() * 100}%;
         animation: sparkleDrift ${4 + Math.random() * 4}s linear infinite;
         animation-delay: ${Math.random() * 4}s;
-        box-shadow: 0 0 6px rgba(201,169,98,0.5);
+        box-shadow: 0 0 6px rgba(216,167,177,0.5);
       `;
       container.appendChild(sparkle);
     }

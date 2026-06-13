@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1a1510"/>
-      <stop offset="50%" style="stop-color:#2c2419"/>
-      <stop offset="100%" style="stop-color:#1a1510"/>
+      <stop offset="0%" style="stop-color:#FAF9F6"/>
+      <stop offset="50%" style="stop-color:#F5F2EE"/>
+      <stop offset="100%" style="stop-color:#EDE8E2"/>
     </linearGradient>
   </defs>
   <rect width="1920" height="1080" fill="url(#bg)"/>
-  <circle cx="960" cy="420" r="180" fill="none" stroke="#c9a962" stroke-width="2" opacity="0.4"/>
-  <text x="960" y="540" text-anchor="middle" fill="#f5f0e8" font-family="Georgia, serif" font-size="72" letter-spacing="8">Adam &amp; Farah</text>
-  <text x="960" y="620" text-anchor="middle" fill="#c9a962" font-family="Georgia, serif" font-size="28" letter-spacing="4">Replace with hero.jpg</text>
+  <circle cx="960" cy="420" r="180" fill="none" stroke="#D8A7B1" stroke-width="2" opacity="0.5"/>
+  <text x="960" y="540" text-anchor="middle" fill="#4F5D3A" font-family="Georgia, serif" font-size="72" letter-spacing="8">Adam &amp; Farah</text>
+  <text x="960" y="620" text-anchor="middle" fill="#C98C9E" font-family="Georgia, serif" font-size="28" letter-spacing="4">Replace with hero.jpg</text>
 </svg>

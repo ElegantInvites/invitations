@@ -22,7 +22,7 @@
   <meta name="keywords" content="wedding, invitation, Adam, Farah, زفاف, دعوة">
   <meta name="author" content="Adam & Farah">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#c9a962">
+  <meta name="theme-color" content="#4F5D3A">
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
@@ -173,7 +173,7 @@
         <span class="intro-name" id="intro-bride-name">Farah</span>
       </div>
       <p class="intro-tagline" id="intro-tagline">We invite you to celebrate our wedding</p>
-      <button type="button" class="btn-intro-gold" id="btn-open-invitation">
+      <button type="button" class="btn-intro-primary" id="btn-open-invitation">
         <span id="intro-open-text">Open Invitation</span>
         <i class="fas fa-chevron-down"></i>
       </button>
@@ -184,6 +184,8 @@
       <span class="btn-enter-music-icon">🎵</span>
       <span id="btn-enter-music-text">Enter With Music</span>
     </button>
+
+    <p class="intro-attribution" id="intro-attribution"></p>
   </section>
 
   <!-- ==================== MAIN SITE (hidden until intro completes) ==================== -->
@@ -201,6 +203,11 @@
   <!-- ==================== FLOATING WHATSAPP ==================== -->
   <a href="#" id="whatsapp-float" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp">
     <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- ==================== FLOATING INSTAGRAM (Elegant Invites) ==================== -->
+  <a href="https://www.instagram.com/elegantinvites2_/" id="instagram-float" class="instagram-float" target="_blank" rel="noopener noreferrer" aria-label="Elegant Invites on Instagram">
+    <i class="fab fa-instagram"></i>
   </a>
 
   <!-- ==================== LIGHTBOX (Gallery) ==================== -->
@@ -231,7 +238,7 @@
         </div>
         <p class="hero-date" data-aos="fade-up" data-aos-delay="500" id="hero-date"></p>
         <p class="hero-message" data-aos="fade-up" data-aos-delay="600" id="hero-message"></p>
-        <a href="#rsvp" class="btn btn-gold hero-cta" data-aos="fade-up" data-aos-delay="800" id="hero-cta"></a>
+        <a href="#rsvp" class="btn btn-primary hero-cta" data-aos="fade-up" data-aos-delay="800" id="hero-cta"></a>
       </div>
       <a href="#countdown" class="hero-scroll" aria-label="Scroll down">
         <span class="scroll-mouse"></span>
@@ -350,10 +357,10 @@
           <h3 class="calendar-title" id="calendar-title"></h3>
           <p class="calendar-subtitle" id="calendar-subtitle"></p>
           <div class="calendar-buttons">
-            <button type="button" class="btn btn-gold" id="btn-google-calendar">
+            <button type="button" class="btn btn-primary" id="btn-google-calendar">
               <i class="fab fa-google me-2"></i><span id="btn-google-text"></span>
             </button>
-            <button type="button" class="btn btn-outline-gold" id="btn-download-ics">
+            <button type="button" class="btn btn-outline-primary" id="btn-download-ics">
               <i class="fas fa-download me-2"></i><span id="btn-ics-text"></span>
             </button>
           </div>
@@ -417,10 +424,10 @@
                 <div class="attendance-options" id="attendance-options"></div>
               </div>
               <div class="rsvp-buttons">
-                <button type="button" class="btn btn-gold btn-lg" id="btn-confirm">
+                <button type="button" class="btn btn-primary btn-lg" id="btn-confirm">
                   <i class="fas fa-check-circle me-2"></i><span id="btn-confirm-text"></span>
                 </button>
-                <button type="button" class="btn btn-outline-gold btn-lg" id="btn-decline">
+                <button type="button" class="btn btn-outline-primary btn-lg" id="btn-decline">
                   <i class="fas fa-times-circle me-2"></i><span id="btn-decline-text"></span>
                 </button>
               </div>
@@ -479,6 +486,7 @@
       <p class="footer-date" id="footer-date"></p>
       <p class="footer-tagline" id="footer-tagline"></p>
       <div class="footer-social" id="footer-social"></div>
+      <div class="footer-attribution" id="footer-attribution"></div>
       <p class="footer-copy" id="footer-copy"></p>
     </div>
   </footer>
