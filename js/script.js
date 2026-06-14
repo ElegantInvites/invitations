@@ -781,8 +781,10 @@ const translations = {
 
     /* Wedding timeline */
     const wt = t.sections.weddingTimeline;
-    setText('wedding-timeline-label', wt.label);
-    setText('wedding-timeline-title', wt.title);
+    if (wt) {
+      setText('wedding-timeline-label', wt.label);
+      setText('wedding-timeline-title', wt.title);
+    }
     renderWeddingTimeline();
 
     /* Couple section */
@@ -1343,10 +1345,27 @@ const translations = {
       }
 
       initAOS();
-      if (typeof AOS !== 'undefined') AOS.refresh();
       initHeroReveal();
+      refreshVisibleContent();
+
+      if (typeof AOS !== 'undefined') {
+        if (typeof AOS.refreshHard === 'function') {
+          AOS.refreshHard();
+        } else {
+          AOS.refresh();
+        }
+      }
+
       window.scrollTo({ top: 0, behavior: 'instant' });
     }, exitDelay);
+  }
+
+  function refreshVisibleContent() {
+    renderWeddingTimeline();
+    renderOurStory();
+    renderEventDetails();
+    renderGallery();
+    renderTestimonials();
   }
 
   function initHeroReveal() {
@@ -1362,6 +1381,11 @@ const translations = {
     requestAnimationFrame(reveal);
     setTimeout(reveal, 100);
   }
+
+  /* Ensure hero visible if intro was skipped or cached */
+  window.addEventListener('pageshow', () => {
+    if (mainSiteRevealed) initHeroReveal();
+  });
 
   /* Canvas floating particles for intro background */
   function initIntroParticles() {

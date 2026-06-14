@@ -16,6 +16,7 @@
         var base = document.createElement('base');
         base.href = '/' + parts.slice(0, idx + 1).join('/') + '/';
         document.head.appendChild(base);
+        window.__SITE_BASE__ = base.href;
       }
     })();
   </script>
@@ -62,7 +63,7 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=4">
 
   <!-- Preload couple portraits for reliable display -->
   <link rel="preload" as="image" href="assets/bride.jpg" type="image/jpeg">
@@ -570,6 +571,6 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
   <!-- Custom JavaScript -->
-  <script src="js/script.js"></script>
+  <script src="js/script.js?v=4"></script>
 </body>
 </html>

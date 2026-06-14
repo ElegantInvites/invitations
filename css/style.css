@@ -3114,16 +3114,6 @@ body.intro-active .instagram-float {
   font-weight: 500;
 }
 
-.hero-content:not(.hero-content--visible) .hero-families,
-.hero-content:not(.hero-content--visible) .hero-name,
-.hero-content:not(.hero-content--visible) .hero-amp,
-.hero-content:not(.hero-content--visible) .hero-floral-divider,
-.hero-content:not(.hero-content--visible) .hero-invite,
-.hero-content:not(.hero-content--visible) .hero-date {
-  opacity: 0;
-  transform: scale(0.9);
-}
-
 .hero-content--visible .hero-families,
 .hero-content--visible .hero-name,
 .hero-content--visible .hero-amp,
@@ -3132,8 +3122,19 @@ body.intro-active .instagram-float {
 .hero-content--visible .hero-date {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 2s ease, transform 2s ease, filter 2s ease;
   filter: drop-shadow(0 0 22px rgba(216, 167, 177, 0.35));
+  transition: opacity 2s ease, transform 2s ease, filter 2s ease;
+}
+
+/* Visible by default once main site is shown (no-JS / GitHub Pages safe) */
+.site-wrapper--visible .hero-content .hero-families,
+.site-wrapper--visible .hero-content .hero-name,
+.site-wrapper--visible .hero-content .hero-amp,
+.site-wrapper--visible .hero-content .hero-floral-divider,
+.site-wrapper--visible .hero-content .hero-invite,
+.site-wrapper--visible .hero-content .hero-date {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .hero-content--visible .hero-families { transition-delay: 0s; }
