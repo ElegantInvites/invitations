@@ -1351,11 +1351,16 @@ const translations = {
 
   function initHeroReveal() {
     const hero = document.getElementById('hero');
+    const content = hero?.querySelector('.hero-content');
     if (!hero) return;
 
-    requestAnimationFrame(() => {
+    const reveal = () => {
       hero.classList.add('hero-section--revealed');
-    });
+      content?.classList.add('hero-content--visible');
+    };
+
+    requestAnimationFrame(reveal);
+    setTimeout(reveal, 100);
   }
 
   /* Canvas floating particles for intro background */
