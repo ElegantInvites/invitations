@@ -193,11 +193,27 @@
   <!-- ==================== MAIN SITE (hidden until intro completes) ==================== -->
   <div id="site-wrapper" class="site-wrapper site-wrapper--hidden" aria-hidden="true">
 
+  <!-- ==================== AMBIENT PETALS & SPARKLES ==================== -->
+  <div id="ambient-petals" class="ambient-petals" aria-hidden="true">
+    <span class="ambient-petal"></span><span class="ambient-petal"></span><span class="ambient-petal"></span>
+    <span class="ambient-petal"></span><span class="ambient-petal"></span><span class="ambient-petal"></span>
+    <span class="ambient-sparkle"></span><span class="ambient-sparkle"></span><span class="ambient-sparkle"></span>
+    <span class="ambient-sparkle"></span><span class="ambient-sparkle"></span>
+  </div>
+
   <!-- ==================== FLOATING MUSIC PLAYER ==================== -->
-  <button type="button" id="music-toggle" class="music-btn" aria-label="Toggle background music" title="تشغيل الموسيقى">
-    <i class="fas fa-music" id="music-icon"></i>
-    <span class="music-pulse"></span>
-  </button>
+  <div class="music-player" id="music-player">
+    <button type="button" id="music-toggle" class="music-btn" aria-label="Toggle background music" title="تشغيل الموسيقى">
+      <span class="music-btn__inner">
+        <i class="fas fa-music" id="music-icon"></i>
+        <span class="music-equalizer" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
+      </span>
+      <span class="music-pulse"></span>
+    </button>
+    <span class="music-hint" id="music-hint">Tap To Play Our Song ♫</span>
+  </div>
   <audio id="bg-music" loop preload="none">
     <source src="assets/music.mp3" type="audio/mpeg">
   </audio>
@@ -231,19 +247,37 @@
     <header id="hero" class="hero-section">
       <div class="hero-parallax" id="hero-parallax"></div>
       <div class="hero-overlay"></div>
+      <div class="hero-particles" id="hero-particles" aria-hidden="true">
+        <span class="hero-particle"></span><span class="hero-particle"></span><span class="hero-particle"></span>
+        <span class="hero-particle"></span><span class="hero-particle"></span><span class="hero-particle"></span>
+      </div>
       <div class="hero-content container text-center">
-        <p class="hero-subtitle" data-aos="fade-down" data-aos-duration="1000" id="hero-subtitle"></p>
-        <h1 class="hero-names" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="200" id="hero-names"></h1>
-        <div class="hero-divider" data-aos="fade-up" data-aos-delay="400">
-          <span class="divider-ornament"><i class="fas fa-heart"></i></span>
+        <p class="hero-families" id="hero-families"></p>
+        <h1 class="hero-cinematic-names" aria-label="Adam and Farah">
+          <span class="hero-name hero-name--groom" id="hero-groom-name">Adam</span>
+          <span class="hero-amp">&amp;</span>
+          <span class="hero-name hero-name--bride" id="hero-bride-name">Farah</span>
+        </h1>
+        <div class="hero-floral-divider" aria-hidden="true">
+          <span class="hero-floral-divider__line"></span>
+          <i class="fas fa-leaf hero-floral-divider__leaf"></i>
+          <i class="fas fa-heart hero-floral-divider__heart"></i>
+          <i class="fas fa-leaf hero-floral-divider__leaf hero-floral-divider__leaf--right"></i>
+          <span class="hero-floral-divider__line"></span>
         </div>
-        <p class="hero-date" data-aos="fade-up" data-aos-delay="500" id="hero-date"></p>
-        <p class="hero-message" data-aos="fade-up" data-aos-delay="600" id="hero-message"></p>
+        <p class="hero-invite" id="hero-invite"></p>
+        <p class="hero-date" id="hero-date"></p>
       </div>
       <a href="#countdown" class="hero-scroll" aria-label="Scroll down">
         <span class="scroll-mouse"></span>
       </a>
     </header>
+
+    <div class="section-divider" aria-hidden="true">
+      <span class="section-divider__line"></span>
+      <i class="fas fa-gem section-divider__icon"></i>
+      <span class="section-divider__line"></span>
+    </div>
 
     <!-- ==================== COUNTDOWN SECTION ==================== -->
     <section id="countdown" class="section countdown-section">
@@ -283,6 +317,30 @@
         </div>
       </div>
     </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <span class="section-divider__line"></span>
+      <i class="fas fa-clock section-divider__icon"></i>
+      <span class="section-divider__line"></span>
+    </div>
+
+    <!-- ==================== WEDDING TIMELINE ==================== -->
+    <section id="wedding-timeline" class="section wedding-timeline-section">
+      <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+          <span class="section-label" id="wedding-timeline-label"></span>
+          <h2 class="section-title" id="wedding-timeline-title"></h2>
+          <div class="title-ornament"><span></span><i class="fas fa-calendar-day"></i><span></span></div>
+        </div>
+        <div class="wedding-timeline" id="wedding-timeline-grid"></div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <span class="section-divider__line"></span>
+      <i class="fas fa-heart section-divider__icon"></i>
+      <span class="section-divider__line"></span>
+    </div>
 
     <!-- ==================== BRIDE & GROOM SECTION ==================== -->
     <section id="couple" class="section couple-section">
@@ -326,17 +384,30 @@
       </div>
     </section>
 
-    <!-- ==================== OUR STORY TIMELINE ==================== -->
-    <section id="story" class="section story-section">
+    <div class="section-divider" aria-hidden="true">
+      <span class="section-divider__line"></span>
+      <i class="fas fa-book-open section-divider__icon"></i>
+      <span class="section-divider__line"></span>
+    </div>
+
+    <!-- ==================== OUR STORY ==================== -->
+    <section id="story" class="section our-story-section">
+      <div class="our-story-section__accent" aria-hidden="true"></div>
       <div class="container">
         <div class="section-header text-center" data-aos="fade-up">
           <span class="section-label" id="story-label"></span>
           <h2 class="section-title" id="story-title"></h2>
           <div class="title-ornament"><span></span><i class="fas fa-book-open"></i><span></span></div>
         </div>
-        <div class="timeline" id="story-timeline"></div>
+        <div class="our-story" id="our-story-content"></div>
       </div>
     </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <span class="section-divider__line"></span>
+      <i class="fas fa-gem section-divider__icon"></i>
+      <span class="section-divider__line"></span>
+    </div>
 
     <!-- ==================== EVENT DETAILS ==================== -->
     <section id="details" class="section details-section">
@@ -358,6 +429,12 @@
       </div>
     </section>
 
+    <div class="section-divider" aria-hidden="true">
+      <span class="section-divider__line"></span>
+      <i class="fas fa-calendar-check section-divider__icon"></i>
+      <span class="section-divider__line"></span>
+    </div>
+
     <!-- ==================== ADD TO CALENDAR ==================== -->
     <section id="calendar" class="section calendar-section">
       <div class="container">
@@ -375,6 +452,12 @@
         </div>
       </div>
     </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <span class="section-divider__line"></span>
+      <i class="fas fa-camera section-divider__icon"></i>
+      <span class="section-divider__line"></span>
+    </div>
 
     <!-- ==================== GALLERY ==================== -->
     <section id="gallery" class="section gallery-section">
@@ -409,6 +492,12 @@
       </div>
     </section>
 
+    <div class="section-divider" aria-hidden="true">
+      <span class="section-divider__line"></span>
+      <i class="fas fa-map-marker-alt section-divider__icon"></i>
+      <span class="section-divider__line"></span>
+    </div>
+
     <!-- ==================== GOOGLE MAPS ==================== -->
     <section id="location" class="section map-section">
       <div class="container">
@@ -423,6 +512,12 @@
         <p class="map-address text-center mt-4" id="map-address" data-aos="fade-up"></p>
       </div>
     </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <span class="section-divider__line"></span>
+      <i class="fas fa-quote-right section-divider__icon"></i>
+      <span class="section-divider__line"></span>
+    </div>
 
     <!-- ==================== TESTIMONIALS CAROUSEL ==================== -->
     <section id="wishes" class="section wishes-section">

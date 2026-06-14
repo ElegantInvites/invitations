@@ -57,13 +57,27 @@ const WEDDING_CONFIG = {
 
   /* ---------- Hero Section ---------- */
   hero: {
-    subtitle: 'ندعوكم لحضور حفل زفافنا',
-    names: 'Adam & Farah',
-    message: 'بكل فرح وامتنان، ندعوكم لمشاركتنا أجمل يوم في حياتنا. حضوركم سيجعل فرحتنا مكتملة.',
-    ctaText: 'تأكيد الحضور',
-    ctaLink: '#rsvp',
+    groomName: 'Adam',
+    brideName: 'Farah',
+    familiesLine: 'Together With Their Families',
+    inviteLine: 'We Invite You To Celebrate Our Wedding',
     image: 'assets/hero.jpg',
     imageFallback: 'assets/hero.svg'
+  },
+
+  /* ---------- Wedding Day Timeline ---------- */
+  weddingTimeline: [
+    { icon: 'fa-door-open', title: 'Guests Arrival', time: '5:00 PM', animation: 'fade-right' },
+    { icon: 'fa-heart', title: 'Ceremony', time: '6:00 PM', animation: 'fade-up' },
+    { icon: 'fa-utensils', title: 'Dinner', time: '7:00 PM', animation: 'fade-left' },
+    { icon: 'fa-champagne-glasses', title: 'Celebration', time: '8:00 PM', animation: 'fade-up' }
+  ],
+
+  /* ---------- Our Story ---------- */
+  ourStory: {
+    image: 'assets/gallery2.jpg',
+    imageFallback: 'assets/gallery2.svg',
+    text: 'From the moment we met, our journey became a beautiful story of love, friendship and unforgettable memories.'
   },
 
   /* ---------- Section Titles ---------- */
@@ -76,13 +90,17 @@ const WEDDING_CONFIG = {
       minutes: 'دقيقة',
       seconds: 'ثانية'
     },
+    weddingTimeline: {
+      label: 'برنامج الحفل',
+      title: 'جدول الزفاف'
+    },
     couple: {
       label: 'العروسان',
       title: 'تعرفوا علينا'
     },
     story: {
       label: 'قصتنا',
-      title: 'رحلة حب جميلة'
+      title: 'قصتنا'
     },
     details: {
       label: 'تفاصيل الحفل',
@@ -188,30 +206,6 @@ const WEDDING_CONFIG = {
     { src: 'assets/gallery4.jpg', fallback: 'assets/gallery4.svg', alt: 'Wedding moment 4' }
   ],
 
-  /* ---------- Love Story Timeline ---------- */
-  story: [
-    {
-      year: '2020',
-      title: 'أول لقاء',
-      text: 'التقينا في مناسبة عائلية، وبدأت قصة جميلة مليئة بالضحك والمحادثات الطويلة.'
-    },
-    {
-      year: '2022',
-      title: 'خطوبة',
-      text: 'قررنا أن نبدأ رحلة مشتركة، ووعدنا بعضنا بالحب والدعم في كل خطوة.'
-    },
-    {
-      year: '2025',
-      title: 'الخطوبة الرسمية',
-      text: 'احتفلنا بخطوبتنا وسط عائلتنا وأصدقائنا الأعزاء في أجواء مليئة بالفرح والمحبة.'
-    },
-    {
-      year: '2026',
-      title: 'الزفاف',
-      text: 'والآن حان وقت قول "نعم" أمام من نحب — وننتظركم لتشاركونا الفرحة.'
-    }
-  ],
-
   /* ---------- Testimonials / Wishes ---------- */
   testimonials: [
     {
@@ -278,7 +272,8 @@ const WEDDING_CONFIG = {
   /* ---------- Music ---------- */
   music: {
     src: 'assets/music.mp3',
-    enabled: true
+    enabled: true,
+    hintText: 'Tap To Play Our Song ♫'
   },
 
   /* ---------- Preloader ---------- */
@@ -305,7 +300,8 @@ const WEDDING_CONFIG = {
 const BRAND = {
   name: 'Elegant Invites',
   tagline: 'Digital Wedding Invitations',
-  instagramUrl: 'https://www.instagram.com/elegantinvites2_/'
+  instagramUrl: 'https://www.instagram.com/elegantinvites2_/',
+  ctaText: 'Create Your Invitation'
 };
 
 /* ============================================================
@@ -334,10 +330,10 @@ const translations = {
       designCredit: 'صُمم بواسطة Elegant Invites'
     },
     hero: {
-      subtitle: 'ندعوكم لحضور حفل زفافنا',
-      names: 'آدم & فرح',
-      message: 'بكل فرح وامتنان، ندعوكم لمشاركتنا أجمل يوم في حياتنا. حضوركم سيجعل فرحتنا مكتملة.',
-      ctaText: 'تأكيد الحضور'
+      groomName: 'آدم',
+      brideName: 'فرح',
+      familiesLine: 'مع عائلاتهم الكريمة',
+      inviteLine: 'ندعوكم لحضور حفل زفافنا'
     },
     wedding: {
       dateDisplay: '15 سبتمبر 2026',
@@ -352,8 +348,12 @@ const translations = {
         minutes: 'دقيقة',
         seconds: 'ثانية'
       },
+      weddingTimeline: {
+        label: 'برنامج الحفل',
+        title: 'جدول الزفاف'
+      },
       couple: { label: 'العروسان', title: 'تعرفوا علينا' },
-      story: { label: 'قصتنا', title: 'رحلة حب جميلة' },
+      story: { label: 'قصتنا', title: 'قصتنا' },
       details: { label: 'تفاصيل الحفل', title: 'معلومات المناسبة' },
       calendar: {
         title: 'احفظ الموعد',
@@ -407,12 +407,15 @@ const translations = {
       { key: 'venue', icon: 'fa-location-dot', label: 'المكان', value: 'قاعة Royal Palace — التجمع الخامس، القاهرة', animation: 'zoom-in' },
       { key: 'dress', icon: 'fa-person-dress', label: 'الزي', value: 'رسمي / Black Tie Optional', animation: 'fade-up' }
     ],
-    story: [
-      { year: '2020', title: 'أول لقاء', text: 'التقينا في مناسبة عائلية، وبدأت قصة جميلة مليئة بالضحك والمحادثات الطويلة.' },
-      { year: '2022', title: 'خطوبة', text: 'قررنا أن نبدأ رحلة مشتركة، ووعدنا بعضنا بالحب والدعم في كل خطوة.' },
-      { year: '2025', title: 'الخطوبة الرسمية', text: 'احتفلنا بخطوبتنا وسط عائلتنا وأصدقائنا الأعزاء في أجواء مليئة بالفرح والمحبة.' },
-      { year: '2026', title: 'الزفاف', text: 'والآن حان وقت قول "نعم" أمام من نحب — وننتظركم لتشاركونا الفرحة.' }
+    weddingTimeline: [
+      { icon: 'fa-door-open', title: 'وصول الضيوف', time: '5:00 مساءً', animation: 'fade-right' },
+      { icon: 'fa-heart', title: 'المراسم', time: '6:00 مساءً', animation: 'fade-up' },
+      { icon: 'fa-utensils', title: 'العشاء', time: '7:00 مساءً', animation: 'fade-left' },
+      { icon: 'fa-champagne-glasses', title: 'الاحتفال', time: '8:00 مساءً', animation: 'fade-up' }
     ],
+    ourStory: {
+      text: 'منذ اللحظة الأولى التي التقينا فيها، أصبحت رحلتنا قصة جميلة من الحب والصداقة وذكريات لا تُنسى.'
+    },
     testimonials: [
       { quote: 'فرحتكم تضيء القلوب. بارك الله لكما وبارك عليكما وجمع بينكما في خير.', author: 'عائلة محمد' },
       { quote: 'من أجمل الأزواج الذين نعرفهم. نتمنى لكما حياة مليئة بالسعادة والبركة.', author: 'أصدقاء الجامعة' },
@@ -443,7 +446,7 @@ const translations = {
     whatsapp: {
       floatMessage: 'مرحباً، لدي استفسار بخصوص حفل زفاف آدم & فرح'
     },
-    music: { ariaLabel: 'تشغيل الموسيقى' }
+    music: { ariaLabel: 'تشغيل الموسيقى', hintText: 'اضغط لتشغيل أغنيتنا ♫' }
   },
   en: {
     site: {
@@ -462,10 +465,10 @@ const translations = {
       designCredit: 'Designed by Elegant Invites'
     },
     hero: {
-      subtitle: "You're Invited to Our Wedding",
-      names: 'Adam & Farah',
-      message: 'With joy and gratitude, we invite you to share the most beautiful day of our lives. Your presence will complete our happiness.',
-      ctaText: 'Confirm Attendance'
+      groomName: 'Adam',
+      brideName: 'Farah',
+      familiesLine: 'Together With Their Families',
+      inviteLine: 'We Invite You To Celebrate Our Wedding'
     },
     wedding: {
       dateDisplay: 'September 15, 2026',
@@ -480,8 +483,12 @@ const translations = {
         minutes: 'Minutes',
         seconds: 'Seconds'
       },
+      weddingTimeline: {
+        label: 'Schedule',
+        title: 'Wedding Timeline'
+      },
       couple: { label: 'The Couple', title: 'Meet Us' },
-      story: { label: 'Our Story', title: 'A Beautiful Love Journey' },
+      story: { label: 'Our Story', title: 'Our Story' },
       details: { label: 'Event Details', title: 'Wedding Information' },
       calendar: {
         title: 'Save the Date',
@@ -535,11 +542,14 @@ const translations = {
       { key: 'venue', icon: 'fa-location-dot', label: 'Venue', value: 'Royal Palace Hall — Fifth Settlement, Cairo', animation: 'zoom-in' },
       { key: 'dress', icon: 'fa-person-dress', label: 'Dress Code', value: 'Formal / Black Tie Optional', animation: 'fade-up' }
     ],
-    story: [
-      { year: '2020', title: 'First Meeting', text: 'We met at a family gathering, and a beautiful story began filled with laughter and long conversations.' },
-      { year: '2022', title: 'Engagement', text: 'We decided to start a shared journey, promising each other love and support every step of the way.' },
-      { year: '2025', title: 'Official Engagement', text: 'We celebrated our engagement surrounded by family and dear friends in an atmosphere full of joy and love.' },
-      { year: '2026', title: 'The Wedding', text: 'Now it is time to say "yes" before those we love — and we await you to share in our joy.' }
+    ourStory: {
+      text: 'From the moment we met, our journey became a beautiful story of love, friendship and unforgettable memories.'
+    },
+    weddingTimeline: [
+      { icon: 'fa-door-open', title: 'Guests Arrival', time: '5:00 PM', animation: 'fade-right' },
+      { icon: 'fa-heart', title: 'Ceremony', time: '6:00 PM', animation: 'fade-up' },
+      { icon: 'fa-utensils', title: 'Dinner', time: '7:00 PM', animation: 'fade-left' },
+      { icon: 'fa-champagne-glasses', title: 'Celebration', time: '8:00 PM', animation: 'fade-up' }
     ],
     testimonials: [
       { quote: 'Your joy lights up hearts. May God bless you both and unite you in goodness.', author: 'The Mohamed Family' },
@@ -571,7 +581,7 @@ const translations = {
     whatsapp: {
       floatMessage: "Hello, I have a question about Adam & Farah's wedding"
     },
-    music: { ariaLabel: 'Toggle background music' }
+    music: { ariaLabel: 'Toggle background music', hintText: 'Tap To Play Our Song ♫' }
   }
 };
 
@@ -610,7 +620,6 @@ const translations = {
     initGallery();
     initLightbox();
     initCalendar();
-    initRSVP();
     initWhatsAppFloat();
     initImageFallbacks();
     initBrandAttribution();
@@ -754,10 +763,11 @@ const translations = {
     setText('preloader-text', t.preloader.text);
 
     /* Hero */
-    setText('hero-subtitle', t.hero.subtitle);
-    setText('hero-names', t.hero.names);
+    setText('hero-groom-name', t.hero.groomName);
+    setText('hero-bride-name', t.hero.brideName);
+    setText('hero-families', t.hero.familiesLine);
+    setText('hero-invite', t.hero.inviteLine);
     setText('hero-date', t.wedding.dateDisplay);
-    setText('hero-message', t.hero.message);
     setHeroBackground(config.hero.image);
 
     /* Countdown labels */
@@ -769,6 +779,12 @@ const translations = {
     setText('cd-minutes-label', cd.minutes);
     setText('cd-seconds-label', cd.seconds);
 
+    /* Wedding timeline */
+    const wt = t.sections.weddingTimeline;
+    setText('wedding-timeline-label', wt.label);
+    setText('wedding-timeline-title', wt.title);
+    renderWeddingTimeline();
+
     /* Couple section */
     setText('couple-label', t.sections.couple.label);
     setText('couple-title', t.sections.couple.title);
@@ -778,7 +794,7 @@ const translations = {
     /* Story */
     setText('story-label', t.sections.story.label);
     setText('story-title', t.sections.story.title);
-    renderTimeline();
+    renderOurStory();
 
     /* Event details */
     setText('details-label', t.sections.details.label);
@@ -803,20 +819,6 @@ const translations = {
     setText('map-address', t.map.address);
     const mapIframe = document.getElementById('map-iframe');
     if (mapIframe) mapIframe.src = config.map.embedUrl;
-
-    /* RSVP labels */
-    const rsvpSec = t.sections.rsvp;
-    setText('rsvp-label', rsvpSec.label);
-    setText('rsvp-title', rsvpSec.title);
-    setText('rsvp-desc', rsvpSec.description);
-    setText('label-guest-name', rsvpSec.guestName);
-    setText('label-guest-phone', rsvpSec.guestPhone);
-    setText('label-guest-count', rsvpSec.guestCount);
-    setText('label-attendance', rsvpSec.attendance);
-    setText('btn-confirm-text', rsvpSec.confirmBtn);
-    setText('btn-decline-text', rsvpSec.declineBtn);
-    renderGuestCountOptions();
-    renderAttendanceOptions();
 
     /* Wishes */
     setText('wishes-label', t.sections.wishes.label);
@@ -849,6 +851,7 @@ const translations = {
     /* Music button aria */
     const musicBtn = document.getElementById('music-toggle');
     if (musicBtn) musicBtn.setAttribute('aria-label', t.music.ariaLabel);
+    setText('music-hint', t.music.hintText);
   }
 
   function setText(id, text) {
@@ -948,22 +951,69 @@ const translations = {
     testImg.src = resolveAssetPath(config.hero.image);
   }
 
-  /* ---------- Timeline Renderer ---------- */
-  function renderTimeline() {
-    const container = document.getElementById('story-timeline');
+  /* ---------- Wedding Day Timeline ---------- */
+  function renderWeddingTimeline() {
+    const grid = document.getElementById('wedding-timeline-grid');
+    if (!grid) return;
+    const t = getLangPack();
+    const items = t.weddingTimeline || config.weddingTimeline;
+
+    grid.innerHTML = `
+      <div class="wedding-timeline__track" aria-hidden="true">
+        <div class="wedding-timeline__line"></div>
+      </div>
+      <div class="wedding-timeline__items">
+        ${items.map((item, i) => `
+          <article class="wedding-timeline__card"
+                   data-aos="${item.animation || 'fade-up'}"
+                   data-aos-delay="${i * 120}"
+                   data-aos-duration="700">
+            <div class="wedding-timeline__dot" aria-hidden="true"></div>
+            <div class="wedding-timeline__icon-wrap">
+              <div class="wedding-timeline__icon"><i class="fas ${item.icon}"></i></div>
+            </div>
+            <div class="wedding-timeline__content">
+              <h3 class="wedding-timeline__title">${escapeHtml(item.title)}</h3>
+              <p class="wedding-timeline__time">${escapeHtml(item.time)}</p>
+            </div>
+          </article>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  /* ---------- Our Story Renderer ---------- */
+  function renderOurStory() {
+    const container = document.getElementById('our-story-content');
     if (!container) return;
     const t = getLangPack();
+    const story = config.ourStory;
+    const imageSrc = resolveAssetPath(story.image);
+    const fallback = resolveAssetPath(story.imageFallback || '');
 
-    container.innerHTML = t.story.map((item, i) => `
-      <div class="timeline-item" data-aos="${i % 2 === 0 ? 'fade-left' : 'fade-right'}" data-aos-delay="${i * 100}">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-year">${escapeHtml(item.year)}</div>
-          <h4 class="timeline-title">${escapeHtml(item.title)}</h4>
-          <p class="timeline-text">${escapeHtml(item.text)}</p>
+    container.innerHTML = `
+      <div class="our-story__grid">
+        <div class="our-story__image-col" data-aos="fade-right" data-aos-duration="800">
+          <div class="our-story__image-wrap">
+            <img class="our-story__image" src="${imageSrc}" alt="${escapeHtml(t.sections.story.title)}"
+                 loading="lazy" decoding="async" data-fallback="${escapeHtml(fallback)}">
+            <div class="our-story__image-overlay" aria-hidden="true"></div>
+            <i class="fas fa-leaf our-story__floral our-story__floral--tl" aria-hidden="true"></i>
+            <i class="fas fa-leaf our-story__floral our-story__floral--br" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="our-story__text-col" data-aos="fade-left" data-aos-duration="800" data-aos-delay="150">
+          <div class="our-story__text-card">
+            <i class="fas fa-quote-right our-story__quote-icon" aria-hidden="true"></i>
+            <p class="our-story__text">${escapeHtml(t.ourStory.text)}</p>
+            <div class="our-story__signature">${escapeHtml(t.couple.displayNames)}</div>
+          </div>
         </div>
       </div>
-    `).join('');
+    `;
+
+    const img = container.querySelector('.our-story__image');
+    if (img) bindImageWithFallback(img);
   }
 
   /* ---------- Event Details Grid ---------- */
@@ -1026,7 +1076,7 @@ const translations = {
           <div class="gallery-item__frame">
             <span class="gallery-item__corner gallery-item__corner--tl" aria-hidden="true"></span>
             <span class="gallery-item__corner gallery-item__corner--br" aria-hidden="true"></span>
-            <img class="gallery-item__img" src="${src}" alt="${escapeHtml(item.alt)}" loading="eager" decoding="async">
+            <img class="gallery-item__img" src="${src}" alt="${escapeHtml(item.alt)}" loading="lazy" decoding="async">
             <div class="gallery-item__overlay">
               <div class="gallery-item__overlay-content">
                 <span class="gallery-item__overlay-icon">${overlay.icon}</span>
@@ -1096,35 +1146,6 @@ const translations = {
     if (layoutCount > 0) {
       grid.classList.add(`gallery-masonry--count-${layoutCount}`);
     }
-  }
-
-  /* ---------- Guest Count & Attendance Options ---------- */
-  function renderGuestCountOptions() {
-    const select = document.getElementById('guest-count');
-    if (!select) return;
-    const t = getLangPack();
-
-    select.innerHTML = t.sections.rsvp.guestOptions.map((n) =>
-      `<option value="${n}">${n}</option>`
-    ).join('');
-  }
-
-  function renderAttendanceOptions() {
-    const container = document.getElementById('attendance-options');
-    if (!container) return;
-    const t = getLangPack();
-
-    const options = [
-      { id: 'att-yes', value: 'yes', label: t.rsvp.attendanceYes },
-      { id: 'att-no', value: 'no', label: t.rsvp.attendanceNo }
-    ];
-
-    container.innerHTML = options.map((opt) => `
-      <div class="attendance-option">
-        <input type="radio" name="attendance" id="${opt.id}" value="${opt.value}" ${opt.value === 'yes' ? 'checked' : ''}>
-        <label for="${opt.id}">${escapeHtml(opt.label)}</label>
-      </div>
-    `).join('');
   }
 
   /* ---------- Testimonials Carousel ---------- */
@@ -1202,6 +1223,10 @@ const translations = {
         </a>
       </div>
       <p class="footer-attribution-tagline">${escapeHtml(BRAND.tagline)}</p>
+      <a href="${BRAND.instagramUrl}" class="footer-cta-btn" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-instagram"></i>
+        <span>${escapeHtml(BRAND.ctaText)}</span>
+      </a>
     `;
   }
 
@@ -1319,8 +1344,18 @@ const translations = {
 
       initAOS();
       if (typeof AOS !== 'undefined') AOS.refresh();
+      initHeroReveal();
       window.scrollTo({ top: 0, behavior: 'instant' });
     }, exitDelay);
+  }
+
+  function initHeroReveal() {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+
+    requestAnimationFrame(() => {
+      hero.classList.add('hero-section--revealed');
+    });
   }
 
   /* Canvas floating particles for intro background */
@@ -1431,11 +1466,13 @@ const translations = {
   function setMusicPlayingState(playing) {
     const btn = document.getElementById('music-toggle');
     const icon = document.getElementById('music-icon');
+    const hint = document.getElementById('music-hint');
     if (!btn) return;
 
     if (playing) {
       btn.classList.add('playing');
       if (icon) icon.className = 'fas fa-pause';
+      hint?.classList.add('music-hint--hidden');
     } else {
       btn.classList.remove('playing');
       if (icon) icon.className = 'fas fa-music';
@@ -1731,55 +1768,6 @@ const translations = {
     return text.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
   }
 
-  /* ---------- RSVP via WhatsApp ---------- */
-  function initRSVP() {
-    document.getElementById('btn-confirm')?.addEventListener('click', () => submitRSVP('yes'));
-    document.getElementById('btn-decline')?.addEventListener('click', () => submitRSVP('no'));
-  }
-
-  function submitRSVP(type) {
-    const t = getLangPack();
-    const name = document.getElementById('guest-name')?.value.trim();
-    const phone = document.getElementById('guest-phone')?.value.trim();
-    const count = document.getElementById('guest-count')?.value;
-
-    if (!name) {
-      alert(t.alerts.nameRequired);
-      document.getElementById('guest-name')?.focus();
-      return;
-    }
-
-    if (!phone) {
-      alert(t.alerts.phoneRequired);
-      document.getElementById('guest-phone')?.focus();
-      return;
-    }
-
-    const attendance = type === 'yes' ? t.rsvp.attendanceYes : t.rsvp.attendanceNo;
-    const message = buildRSVPMessage(name, phone, count, attendance);
-
-    const url = `https://wa.me/${config.rsvp.whatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  }
-
-  function buildRSVPMessage(name, phone, count, attendance) {
-    const t = getLangPack();
-    const lines = [
-      t.rsvp.whatsappMessageIntro,
-      '',
-      `👤 *Name / الاسم:* ${name}`,
-      `📱 *Phone / الهاتف:* ${phone}`,
-      `👥 *Guests / عدد الحضور:* ${count}`,
-      `📋 *Status / الحالة:* ${attendance}`,
-      '',
-      `📅 *Event Date:* ${t.wedding.dateDisplay}`,
-      `📍 *Venue:* ${t.map.address}`,
-      '',
-      '_Sent via Wedding Invitation Website_'
-    ];
-    return lines.join('\n');
-  }
-
   /* ---------- Floating WhatsApp Button ---------- */
   function initWhatsAppFloat() {
     const btn = document.getElementById('whatsapp-float');
@@ -1793,10 +1781,11 @@ const translations = {
   function initAOS() {
     if (typeof AOS !== 'undefined') {
       AOS.init({
-        duration: 800,
+        duration: 900,
         easing: 'ease-out-cubic',
         once: true,
-        offset: 60,
+        offset: 80,
+        mirror: false,
         disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'true' : false
       });
     }
