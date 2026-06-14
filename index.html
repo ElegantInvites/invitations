@@ -6,7 +6,12 @@
     (function () {
       if (window.location.protocol === 'file:') return;
       var parts = window.location.pathname.split('/').filter(Boolean);
-      var idx = parts.indexOf('invitations');
+      var repoNames = ['invitations', 'Adam-Farah'];
+      var idx = -1;
+      for (var i = 0; i < repoNames.length; i++) {
+        var found = parts.indexOf(repoNames[i]);
+        if (found !== -1) idx = found;
+      }
       if (idx !== -1) {
         var base = document.createElement('base');
         base.href = '/' + parts.slice(0, idx + 1).join('/') + '/';
